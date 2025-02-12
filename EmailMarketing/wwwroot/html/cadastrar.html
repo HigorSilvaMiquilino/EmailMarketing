@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fenix Systems  - Cadastrar</title>
+    <link href="/css/Style.css" rel="stylesheet" />
+    <link href="/css/cadastrar.css" rel="stylesheet" />
+    <script src="/js/carregar-componentes.js" defer></script>
+</head>
+<body>
+    <div id="header"></div>
+
+    <main>
+        <div class="form-container">
+            <h1>Cadastre-se</h1>
+            <form class="signup-form" action="/register" method="post">
+                <div class="form-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" name="name" required placeholder="Digite seu nome completo">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required placeholder="Digite seu e-mail">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" required placeholder="Crie uma senha">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirme sua Senha</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required placeholder="Digite a senha novamente">
+                </div>
+
+                <button type="submit" class="submit-button">Criar Conta</button>
+            </form>
+
+            <div class="form-links">
+                <a href="/html/login.html">Já tem uma conta? Faça login</a>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+</body>
+</html>

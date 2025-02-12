@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fenix Systems - Estatísticas</title>
+
+    <link rel="stylesheet" href="/css/Style.css" />
+    <link rel="stylesheet" href="/css/estatistica.css" />
+
+    <script src="/js/carregar-componentes.js" defer></script>
+    <script src="/js/estatistica-graficos.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <div id="header"></div>
+
+    <main>
+        <div class="charts-grid">
+            <h2>Estatísticas</h2>
+            <div class="chart-container">
+                <canvas id="emailsEnviadosChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="emailsComErroChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="emailsAbertosChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="cliquesChart"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+</body>
+</html>

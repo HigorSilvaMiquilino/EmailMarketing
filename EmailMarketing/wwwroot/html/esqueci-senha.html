@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fenix Systems  - Esqueci minha senha</title>
+    <link href="/css/Style.css" rel="stylesheet" />
+    <link href="/css/esqueci-senha.css" rel="stylesheet" />
+    <script src="/js/carregar-componentes.js" defer></script>
+</head>
+<body>
+    <div id="header"></div>
+
+    <div id="header"></div>
+
+    <main>
+        <div class="form-container">
+            <h1>Recuperar Senha</h1>
+            <form class="recovery-form" action="/recover-password" method="post">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required placeholder="Digite seu e-mail cadastrado">
+                </div>
+
+                <button type="submit" class="submit-button">Enviar Link de Recuperação</button>
+            </form>
+
+            <div class="form-links">
+                <a href="/html/login.html">Voltar para o Login</a>
+                <br><br>
+                <a href="/html/cadastrar.html">Ainda não tem uma conta? Cadastre-se</a>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+</body>
+</html>
