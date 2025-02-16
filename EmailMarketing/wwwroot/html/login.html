@@ -4,25 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fenix Systems  - Login</title>
-    <link  href="/css/Style.css" rel="stylesheet" />
+
+    <link href="/css/Style.css" rel="stylesheet" />
     <link href="/css/login.css" rel="stylesheet" />
-    <script src="/js/carregar-componentes.js" defer></script>
+
+    <script src="/js/carregar-componentes.js" type="module" defer></script>
+    <script src="/js/validacao/validacao-login.js" type="module" defer></script>
+    <script src="/js/enviar/enviar-login.js" type="module" defer></script>
 </head>
 <body>
-    <div id="header"></div>
 
     <main>
         <div class="login-container">
             <h1>Login</h1>
-            <form class="login-form" action="/login" method="post">
+            <form class="login-form form-input">
+
+                <input type="hidden" name="__RequestVerificationToken">
+
                 <div class="form-group">
                     <label for="email">E-mail</label>
                     <input type="email" id="email" name="email" required placeholder="Seu e-mail">
+                    <div class="error-message" id="email-error"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Senha</label>
                     <input type="password" id="password" name="password" required placeholder="Sua senha">
+                    <div class="error-message" id="password-error"></div>
                 </div>
 
                 <button type="submit" class="login-button">Entrar</button>
@@ -36,6 +44,5 @@
         </div>
     </main>
 
-    <div id="footer"></div>
 </body>
 </html>

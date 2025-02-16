@@ -1,76 +1,76 @@
 ﻿.form-container {
-    max-width: 500px;
-    margin: 150px auto 50px;
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+max-width: 500px;
+margin: 150px auto 50px;
+padding: 2rem;
+background-color: #fff;
+border-radius: 10px;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-    .form-container h1 {
-        text-align: center;
-        color: #333;
-        margin-bottom: 2rem;
-        font-size: 2rem;
-    }
+.form-container h1 {
+text-align: center;
+color: #333;
+margin-bottom: 2rem;
+font-size: 2rem;
+}
 
 .signup-form, .recovery-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
 }
 
-    .form-group label {
-        font-weight: bold;
-        color: #333;
-    }
+.form-group label {
+font-weight: bold;
+color: #333;
+}
 
-    .form-group input {
-        padding: 0.8rem;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 1rem;
-        transition: border-color 0.3s ease;
-    }
+.form-group input {
+padding: 0.8rem;
+border: 1px solid #ddd;
+border-radius: 5px;
+font-size: 1rem;
+transition: border-color 0.3s ease;
+}
 
-        .form-group input:focus {
-            outline: none;
-            border-color: #007bff;
-        }
+.form-group input:focus {
+    outline: none;
+    border-color: #007bff;
+}
 
 .submit-button {
-    background-color: #007bff;
-    color: white;
-    padding: 1rem;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+background-color: #007bff;
+color: white;
+padding: 1rem;
+border: none;
+border-radius: 5px;
+font-size: 1rem;
+cursor: pointer;
+transition: background-color 0.3s ease;
 }
 
-    .submit-button:hover {
-        background-color: #0056b3;
-    }
+.submit-button:hover {
+background-color: #0056b3;
+}
 
 .form-links {
-    text-align: center;
-    margin-top: 1.5rem;
+text-align: center;
+margin-top: 1.5rem;
 }
 
-    .form-links a {
-        color: #007bff;
-        text-decoration: none;
-        font-size: 0.9rem;
-    }
+.form-links a {
+color: #007bff;
+text-decoration: none;
+font-size: 0.9rem;
+}
 
-        .form-links a:hover {
-            text-decoration: underline;
-        }
+.form-links a:hover {
+    text-decoration: underline;
+}
 

@@ -1,0 +1,78 @@
+﻿<!-- EmailTemplate.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .email-header {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .email-body {
+            padding: 20px;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+            .email-body h2 {
+                color: #007bff;
+            }
+
+        .email-footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #f4f4f4;
+            color: #555555;
+            font-size: 14px;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            color: #ffffff;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            Bem-vindo ao nosso serviço!
+        </div>
+        <div class="email-body">
+            <h2>Olá, {UsauarioNome}!</h2>
+            <p>Nós estamos contentes por você está aqui. Essa é a confirmação que você se cadastrou com sucesso.</p>
+            <p>Saiba mais:</p>
+        </div>
+        <div class="email-footer">
+            &copy; 2024 Fenix. Todos os direitos reservados.
+        </div>
+    </div>
+</body>
+</html>

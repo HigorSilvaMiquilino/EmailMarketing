@@ -1,15 +1,22 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+﻿import { renderHeader } from "./componentes/header.js";
+import { renderFooter } from "./componentes/footer.js";
 
-    function carregarComponentes(seletor, arquivo) {
+document.addEventListener('DOMContentLoaded', function () {
+    const header = renderHeader();
+    document.body.prepend(header); 
 
-        fetch(arquivo)
-            .then(response => response.text())
-            .then(html => {
-               document.querySelector(seletor).innerHTML = html;
-            })
-            .catch(error => console.error(`erro ao carregar ${arquivo}: `, error));
+    const footer = renderFooter();
+    document.body.append(footer); 
+
+    const comeceAgoraBtn = document.getElementById('comeceAgora');
+    if (comeceAgoraBtn) {
+        const token = localStorage.getItem('token');
+        if (token) {
+            comeceAgoraBtn.href = "/html/carregar.html";
+            comeceAgoraBtn.textContent = "Acessar Campanhas";
+        } else {
+            comeceAgoraBtn.href = "/html/login.html";
+            comeceAgoraBtn.textContent = "Comece Agora"; 
+        }
     }
-
-    carregarComponentes("#header", "/html/componentes/header.html");
-    carregarComponentes("#footer", "/html/componentes/footer.html");
 });

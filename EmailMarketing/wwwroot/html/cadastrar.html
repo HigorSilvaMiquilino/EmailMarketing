@@ -4,35 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fenix Systems  - Cadastrar</title>
+
     <link href="/css/Style.css" rel="stylesheet" />
     <link href="/css/cadastrar.css" rel="stylesheet" />
-    <script src="/js/carregar-componentes.js" defer></script>
+
+    <script src="/js/carregar-componentes.js" type="module" defer></script>
+    <script src="/js/validacao/validacao-cadastrar.js" type="module" defer></script>
+    <script src="/js/enviar/CsrfToken.js" type="module" defer></script>
+    <script src="/js/enviar/enviar-cadastrar.js" type="module" defer></script>
 </head>
 <body>
-    <div id="header"></div>
 
     <main>
         <div class="form-container">
             <h1>Cadastre-se</h1>
-            <form class="signup-form" action="/register" method="post">
+            <form class="signup-form form-input">
+
+                <input type="hidden" name="__RequestVerificationToken">
+
+
                 <div class="form-group">
                     <label for="name">Nome Completo</label>
-                    <input type="text" id="name" name="name" required placeholder="Digite seu nome completo">
+                    <input type="text" id="name" name="name" placeholder="Digite seu nome completo">
+                    <div class="error-message" id="name-error"></div> <!-- Mensagem de erro para o nome -->
                 </div>
 
                 <div class="form-group">
                     <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" required placeholder="Digite seu e-mail">
+                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail">
+                    <div class="error-message" id="email-error"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Senha</label>
-                    <input type="password" id="password" name="password" required placeholder="Crie uma senha">
+                    <input type="password" id="password" name="password" placeholder="Crie uma senha">
+                    <div class="error-message" id="password-error"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="confirm-password">Confirme sua Senha</label>
-                    <input type="password" id="confirm-password" name="confirm-password" required placeholder="Digite a senha novamente">
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Digite a senha novamente">
+                    <div class="error-message" id="confirm-password-error"></div>
                 </div>
 
                 <button type="submit" class="submit-button">Criar Conta</button>
@@ -44,6 +56,5 @@
         </div>
     </main>
 
-    <div id="footer"></div>
 </body>
 </html>
