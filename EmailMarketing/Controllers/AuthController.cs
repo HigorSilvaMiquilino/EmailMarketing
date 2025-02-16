@@ -38,18 +38,18 @@ namespace EmailMarketing.Controllers
             var user = await _userManager.FindByNameAsync(login.Email);
             if (user == null)
             {
-                return Unauthorized(new { message = "E-mail ou senha incorretos." });
+                return Unauthorized(new { success = false, message = "E-mail ou senha incorretos." });
             }
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, login.Senha, lockoutOnFailure: false);
             if (!result.Succeeded)
             {
-                return Unauthorized(new { message = "E-mail ou senha incorretos." });
+                return Unauthorized(new { success = false, message = "E-mail ou senha incorretos." });
             }
 
             var token = _authService.GenerateJwtToken(user);
-        
-            return Ok(new { token });
+
+            return Ok(new { success = true, token });
         }
     }
 }

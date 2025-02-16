@@ -12,5 +12,10 @@ namespace EmailMarketing.Data
         }
 
         public DbSet<EmailLog> EmailLogs { get; set; }
+
+        public DbSet<Cliente> Clientes { get; set; }
+
+        public DbSet<Promocao> Promocoes { get; set; }
+
     }
 }

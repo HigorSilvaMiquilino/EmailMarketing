@@ -20,17 +20,28 @@
     })
         .then((response) => {
             if (!response.ok) {
-                throw new Error("Erro na requisição");
+                return response.json().then(errorData => {
+                    throw new Error(errorData.message || "Erro na requisição");
+                });
             }
             return response.json();
         })
         .then((data) => {
             if (data.token) {
-                localStorage.setItem('token', data.token); // Armazena o token
-                window.location.href = "/html/carregar.html"; // Redireciona para a página protegida
+                localStorage.setItem('token', data.token);
+                window.location.href = "/html/carregar.html";
+            } else {
+                showError('password-error', data.message || "Erro ao realizar o login.");
             }
         })
         .catch((error) => {
             console.error("Error:", error);
+            showError('password-error', error.message || "Erro ao realizar o login. Tente novamente.");
         });
+}
+
+function showError(elementId, message) {
+    const errorElement = document.getElementById(elementId);
+    errorElement.textContent = message;
+    errorElement.style.display = 'block';
 }
