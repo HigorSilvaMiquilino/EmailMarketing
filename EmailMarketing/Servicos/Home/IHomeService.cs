@@ -10,7 +10,7 @@ namespace EmailMarketing.Servicos.Home
 
         // Task<List<EmailLog>> GetEmailLogsAsync();
 
-        Task dispararTodosEmailsAsync(List<string> selectedEmails);
+        //Task dispararTodosEmailsAsync(List<string> selectedEmails);
 
         Task DeleteUserAsync(string userId);
         Task LogEmailAsync(string email, string status, string mensagemErro);

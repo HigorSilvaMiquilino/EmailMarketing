@@ -75,7 +75,7 @@ namespace EmailMarketing.Servicos.Home
                 throw new Exception("User not found");
             }
         }
-
+        /*
         public async Task dispararTodosEmailsAsync(List<string> selectedEmails)
         {
             foreach (var selectedEmail in selectedEmails)
@@ -100,7 +100,7 @@ namespace EmailMarketing.Servicos.Home
                 }
             }
         }
-
+        */
         public async Task<List<UsuarioViewModel>> GetAllAsync()
         {
             var data = await _context.Users

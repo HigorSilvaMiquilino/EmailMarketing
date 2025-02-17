@@ -7,6 +7,6 @@
         public string Descricao { get; set; }
         public DateTime DataInicio { get; set; }
         public DateTime DataTermino { get; set; }
-        public ICollection<Cliente> Clientes { get; set; } = new List<Cliente>(); // Relação 1:N
+        public ICollection<Cliente> Clientes { get; set; } = new List<Cliente>(); 
     }
 }

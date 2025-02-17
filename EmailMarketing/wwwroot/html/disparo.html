@@ -4,10 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fenix Systems - E-mail Marketing</title>
+
+
     <link rel="stylesheet" href="/css/Style.css" />
+    <link rel="stylesheet" href="/css/disparo.css" />
+
     <script src="/js/carregar-componentes.js" type="module" defer></script>
+    <script src="/js/disparo.js" defer></script>
 </head>
 <body>
-
+    <main>
+        <section class="disparo-section">
+            <div class="container">
+                <h2>Disparo de E-mails</h2>
+                <form id="disparoForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="assunto">Assunto do E-mail:</label>
+                        <input type="text" id="assunto" name="assunto"  />
+                    </div>
+                    <div class="form-group">
+                        <label for="corpoEmail">Corpo do E-mail:</label>
+                        <textarea id="corpoEmail" name="corpoEmail" rows="6" ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="promocao">Selecione a Promoção:</label>
+                        <select id="promocao" name="promocao" >
+                            <option value="">Selecione uma promoção</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="imagemPromocao">Imagem da Promoção:</label>
+                        <input type="file" id="imagemPromocao" name="imagemPromocao" accept="image/*" />
+                    </div>
+                    <div class="error-message" id="disparoErrorMessage"></div>
+                    <button type="submit" class="btn-primary">Disparar E-mails</button>
+                </form>
+                <div id="disparoStatus"></div>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

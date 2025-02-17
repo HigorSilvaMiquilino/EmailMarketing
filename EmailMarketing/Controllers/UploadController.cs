@@ -36,14 +36,12 @@ namespace EmailMarketing.Controllers
 
                 using (var stream = new MemoryStream())
                 {
-                    // Copy the uploaded file to a memory stream
                     await file.CopyToAsync(stream);
                     stream.Position = 0;
 
-                    // Use EPPlus to read the Excel file
                     using (var package = new ExcelPackage(stream))
                     {
-                        var worksheet = package.Workbook.Worksheets[0]; // Get the first sheet
+                        var worksheet = package.Workbook.Worksheets[0]; 
                         var rowCount = worksheet.Dimension?.Rows ?? 0;
 
                         if (rowCount == 0)
@@ -51,7 +49,6 @@ namespace EmailMarketing.Controllers
                             return BadRequest(new { success = false, message = "O arquivo Excel está vazio ou não contém dados." });
                         }
 
-                        // Start from row 2 to skip the header
                         for (int row = 2; row <= rowCount; row++)
                         {
                             var nome = worksheet.Cells[row, 1].Text;
@@ -90,7 +87,6 @@ namespace EmailMarketing.Controllers
                     }
                 }
 
-                // Save to the database
                 await _context.Clientes.AddRangeAsync(clientes);
                 await _context.SaveChangesAsync();
 

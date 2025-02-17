@@ -28,4 +28,8 @@
     <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\html\templates\EmailTemplate.html" />
+  </ItemGroup>
+
 </Project>

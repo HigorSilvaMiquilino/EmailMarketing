@@ -1,4 +1,5 @@
 ﻿using EmailMarketing.Data;
+using EmailMarketing.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using System.Net.Mail;
 using System.Net.Sockets;
@@ -15,24 +16,21 @@ namespace EmailMarketing.Servicos.Email
             _context = context;
         }
 
-        public async Task EnviarEmailslAsync(string email, string nome)
+        public async Task EnviarEmailslAsync(string email, string nome, DisparoModel disparoModel, string imagemUrl, Promocao promocao)
         {
             var fromAddress = _config["EmailSettings:DefaultEmailAddress"];
             var smtpServer = _config["EmailSettings:Server"];
             var smtpPort = Convert.ToInt32(_config["EmailSettings:Port"]);
             var appPassword = _config["EmailSettings:Password"];
 
-            var templatePath = _config["EmailSettings:TemplatePath"];
-            var emailTemplate = await File.ReadAllTextAsync(templatePath);
-
-            var custumizedTamplate = emailTemplate.Replace("{UsauarioNome}", nome);
+            var corpoEmail = await CarregarTemplateAsync(nome, disparoModel.CorpoEmail, imagemUrl, promocao);
 
             var message = new MailMessage
             {
                 From = new MailAddress(fromAddress),
-                Subject = "Bem-vindo a nossa plataforma",
-                Body = custumizedTamplate,
-                IsBodyHtml = true
+                Subject = disparoModel.Assunto,
+                Body = corpoEmail,
+                IsBodyHtml = true 
             };
 
             message.To.Add(new MailAddress(email));
@@ -51,23 +49,37 @@ namespace EmailMarketing.Servicos.Email
             {
                 await LogEmailAsync(email,
                     EmailStatusEnum.Erro.ToString(),
-                    "Failed to connect to the SMTP server. Please verify your SMTP settings.");
-                throw new SmtpException("Failed to connect to the SMTP server. Please verify your SMTP settings.", ex);
+                    "Falha ao se conectar ao SMTP server. Por favor verifique as configurações do SMTP.");
+                throw new SmtpException("Falha ao se conectar ao SMTP server. Por favor verifique as configurações do SMTP.", ex);
             }
             catch (SmtpException ex)
             {
                 await LogEmailAsync(email,
                      EmailStatusEnum.Erro.ToString(),
-                     "Failure sending mail.");
-                throw new SmtpException("Failure sending mail.", ex);
+                     "Falha ao mandar o e-mail.");
+                throw new SmtpException("Falha ao mandar o e-mail.", ex);
             }
             catch (Exception ex)
             {
                 await LogEmailAsync(email,
                         EmailStatusEnum.Erro.ToString(),
-                        "An error occurred while sending the email.");
-                throw new Exception("An error occurred while sending the email.", ex);
+                        "Um erro ocorreu enquanto eviava o e-mail.");
+                throw new Exception("Um erro ocorreu enquanto eviava o e-mail.", ex);
             }
+        }
+
+        public async Task<string> CarregarTemplateAsync(string nome, string mensagem, string imagemPromocao, Promocao promocao)
+        {
+            var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot","html", "templates", "EmailTemplate.html");
+            var emailTemplate = await File.ReadAllTextAsync(templatePath);
+
+            var templatePersonalizado = emailTemplate
+                .Replace("{promocaoNome}", promocao.Nome)
+                .Replace("{Nome}", nome)
+                .Replace("{Mensagem}", mensagem)
+                .Replace("{ImagemPromocao}", imagemPromocao);
+
+            return templatePersonalizado;
         }
 
         public async Task LogEmailAsync(string email, string status, string mensagemErro)

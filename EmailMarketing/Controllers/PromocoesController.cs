@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EmailMarketing.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PromocoesController : ControllerBase
@@ -39,6 +40,30 @@ namespace EmailMarketing.Controllers
                 await _context.SaveChangesAsync();
 
                 return Ok(new { success = true, message = "Promoção cadastrada com sucesso!", data = promocao });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetPromocoes()
+        {
+            try
+            {
+                var promocoes = await _context.Promocoes
+                    .Select(p => new
+                    {
+                        p.Id,
+                        p.Nome,
+                        p.Descricao,
+                        p.DataInicio,
+                        p.DataTermino
+                    })
+                    .ToListAsync();
+
+                return Ok(new { success = true, data = promocoes });
             }
             catch (Exception ex)
             {

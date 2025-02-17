@@ -56,7 +56,6 @@ builder.Services.AddAntiforgery(options =>
     options.HeaderName = "RequestVerificationToken"; 
 });
 
-// Configurar autenticação JWT
 var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]); 
 builder.Services.AddAuthentication(options =>
 {

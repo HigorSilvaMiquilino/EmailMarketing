@@ -1,5 +1,4 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
-    // Dados de exemplo
     const labels = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul'];
     const emailsEnviados = [120, 150, 180, 200, 220, 250, 300];
     const emailsComErro = [5, 10, 8, 12, 15, 20, 18];
@@ -16,7 +15,6 @@
         }
     };
 
-    // Gráfico de E-mails Enviados (Bar Chart)
     const emailsEnviadosChart = new Chart(document.getElementById('emailsEnviadosChart'), {
         type: 'bar',
         data: {
@@ -32,7 +30,6 @@
         options: commonOptions
     });
 
-    // Gráfico de E-mails com Erro (Bar Chart)
     const emailsComErroChart = new Chart(document.getElementById('emailsComErroChart'), {
         type: 'bar',
         data: {
@@ -48,7 +45,6 @@
         options: commonOptions
     });
 
-    // Gráfico de E-mails Abertos (Line Chart)
     const emailsAbertosChart = new Chart(document.getElementById('emailsAbertosChart'), {
         type: 'line',
         data: {
@@ -64,7 +60,6 @@
         options: commonOptions
     });
 
-    // Gráfico de Cliques nos Botões (Line Chart)
     const cliquesChart = new Chart(document.getElementById('cliquesChart'), {
         type: 'line',
         data: {

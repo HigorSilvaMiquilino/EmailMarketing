@@ -12,7 +12,6 @@
     <script src="/js/upload.js" defer></script>
 </head>
 <body>
-
     <main>
         <section class="upload-section">
             <div class="container">
@@ -21,11 +20,38 @@
                     <div class="form-group">
                         <label for="fileInput">Selecione um arquivo (CSV, xlsx ou SQL):</label>
                         <input type="file" id="fileInput" name="file" accept=".csv, .sql, .xlsx" required />
-                        <div class="error-message" id="errorMessage"></div>
+                        <div class="error-message" id="fileErrorMessage"></div>
                     </div>
-                    <button type="submit" class="btn-primary">Enviar</button>
+                    <button type="submit" class="btn-primary">Enviar Arquivo</button>
                 </form>
                 <div id="uploadStatus"></div>
+            </div>
+        </section>
+
+        <section class="promocao-section">
+            <div class="container">
+                <h2>Cadastrar Promoção</h2>
+                <form id="promocaoForm">
+                    <div class="form-group">
+                        <label for="nomePromocao">Nome da Promoção:</label>
+                        <input type="text" id="nomePromocao" name="nomePromocao" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="descricaoPromocao">Descrição:</label>
+                        <textarea id="descricaoPromocao" name="descricaoPromocao" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="dataInicio">Data de Início:</label>
+                        <input type="date" id="dataInicio" name="dataInicio" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="dataTermino">Data de Término:</label>
+                        <input type="date" id="dataTermino" name="dataTermino" required />
+                    </div>
+                    <div class="error-message" id="promocaoErrorMessage"></div>
+                    <button type="submit" class="btn-primary">Cadastrar Promoção</button>
+                </form>
+                <div id="promocaoStatus"></div>
             </div>
         </section>
     </main>
