@@ -4,6 +4,7 @@ using EmailMarketing.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmailMarketing.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250217124324_LogsEmail")]
+    partial class LogsEmail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,19 +160,20 @@ namespace EmailMarketing.Migrations
                     b.Property<DateTime>("DataAbertura")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("IP")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LogEnvioId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserAgent")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LogEnvioId");
 
                     b.ToTable("LogsAbertura");
                 });
@@ -185,11 +189,14 @@ namespace EmailMarketing.Migrations
                     b.Property<DateTime>("DataClique")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("IP")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IP")
+                    b.Property<int>("LogEnvioId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Url")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -198,6 +205,8 @@ namespace EmailMarketing.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LogEnvioId");
 
                     b.ToTable("LogsClique");
                 });
@@ -246,9 +255,8 @@ namespace EmailMarketing.Migrations
                     b.Property<DateTime>("DataErro")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("LogEnvioId")
+                        .HasColumnType("int");
 
                     b.Property<string>("MensagemErro")
                         .IsRequired()
@@ -258,11 +266,9 @@ namespace EmailMarketing.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("LogEnvioId");
 
                     b.ToTable("LogsErro");
                 });
@@ -436,6 +442,28 @@ namespace EmailMarketing.Migrations
                     b.Navigation("Promocao");
                 });
 
+            modelBuilder.Entity("EmailMarketing.Data.LogAbertura", b =>
+                {
+                    b.HasOne("EmailMarketing.Data.LogEnvio", "LogEnvio")
+                        .WithMany("LogsAbertura")
+                        .HasForeignKey("LogEnvioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LogEnvio");
+                });
+
+            modelBuilder.Entity("EmailMarketing.Data.LogClique", b =>
+                {
+                    b.HasOne("EmailMarketing.Data.LogEnvio", "LogEnvio")
+                        .WithMany("LogsClique")
+                        .HasForeignKey("LogEnvioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LogEnvio");
+                });
+
             modelBuilder.Entity("EmailMarketing.Data.LogEnvio", b =>
                 {
                     b.HasOne("EmailMarketing.Data.Promocao", "Promocao")
@@ -445,6 +473,17 @@ namespace EmailMarketing.Migrations
                         .IsRequired();
 
                     b.Navigation("Promocao");
+                });
+
+            modelBuilder.Entity("EmailMarketing.Data.LogErro", b =>
+                {
+                    b.HasOne("EmailMarketing.Data.LogEnvio", "LogEnvio")
+                        .WithMany("LogsErro")
+                        .HasForeignKey("LogEnvioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LogEnvio");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -496,6 +535,15 @@ namespace EmailMarketing.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("EmailMarketing.Data.LogEnvio", b =>
+                {
+                    b.Navigation("LogsAbertura");
+
+                    b.Navigation("LogsClique");
+
+                    b.Navigation("LogsErro");
                 });
 
             modelBuilder.Entity("EmailMarketing.Data.Promocao", b =>

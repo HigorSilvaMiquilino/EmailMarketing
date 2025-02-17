@@ -2,7 +2,7 @@
 {
     public interface IEmailHelper
     {
-        Task LogEmailAsync(string email, string status, string mensagemErro);
+        Task LogEmailAsync(string email, string status, string mensagemErro, string stackTrace);
 
     }
 }

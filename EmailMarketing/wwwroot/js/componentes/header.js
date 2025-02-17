@@ -3,8 +3,8 @@
     const token = localStorage.getItem('token');
 
     const menuItems = token ? `
-        <li><a href="/html/disparo.html">Disparo</a></li>
         <li><a href="/html/carregar.html">Carregar</a></li>
+        <li><a href="/html/disparo.html">Disparo</a></li>
         <li><a href="/html/estatistica.html">Estatísticas</a></li>
         <li><a href="/html/logout.html" class="btn-login">Logout</a></li>
     ` : `

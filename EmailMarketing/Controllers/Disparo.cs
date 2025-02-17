@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 using System.Threading.Tasks;
 using EmailMarketing.Servicos.Email;
+using System;
 
 namespace EmailMarketing.Controllers
 {
@@ -16,6 +17,7 @@ namespace EmailMarketing.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly EnviarEmail _enviarEmails;
+        private string Email { get; set; }
 
         public DisparoController(ApplicationDbContext context, EnviarEmail enviarEmail)
         {
@@ -43,6 +45,8 @@ namespace EmailMarketing.Controllers
                     return BadRequest(new { success = false, message = "Nenhum cliente encontrado para a promoção selecionada." });
                 }
 
+                Email = clientes[0].Email;
+
                 var promocao = await _context.Promocoes.FindAsync(disparoModel.PromocaoId);
 
                 string imagemUrl = null;
@@ -65,18 +69,46 @@ namespace EmailMarketing.Controllers
                     imagemUrl = $"/uploads/{uniqueFileName}";
                     Console.WriteLine($"Imagem em: {imagemUrl}");
                 }
+
                 
                 foreach (var cliente in clientes)
                 {
                     await _enviarEmails.EnviarEmailslAsync(cliente.Email, cliente.Nome, disparoModel, imagemUrl, promocao);
-                    await _enviarEmails.LogEmailAsync(cliente.Email, EmailStatusEnum.Sucesso.ToString(), "E-mail enviado com sucesso.");
-                    Console.WriteLine($"Enviando e-mail para {cliente.Email} com assunto: {disparoModel.Assunto}");
+                    var logEnvio = new LogEnvio
+                    {
+                        Email = cliente.Email,
+                        Assunto = disparoModel.Assunto,
+                        DataEnvio = DateTime.Now,
+                        PromocaoId = disparoModel.PromocaoId,
+                        Status = EmailStatusEnum.Sucesso.ToString()
+                    };
+                    _context.LogsEnvio.Add(logEnvio);
+                    await _context.SaveChangesAsync();
                 }
 
                 return Ok(new { success = true, message = "E-mails disparados com sucesso!" });
             }
             catch (Exception ex)
             {
+                var logErro = new LogErro
+                {
+                    DataErro = DateTime.Now,
+                    MensagemErro = ex.Message,
+                    StackTrace = ex.StackTrace,
+                    Status = EmailStatusEnum.Erro.ToString(),
+                    Email = Email
+                };
+
+                try
+                {
+                    _context.LogsErro.Add(logErro);
+                    await _context.SaveChangesAsync();
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine($"Erro ao salvar log de erro: {exception.Message}");
+                }
+
                 return StatusCode(500, new { success = false, message = ex.Message });
             }
         }

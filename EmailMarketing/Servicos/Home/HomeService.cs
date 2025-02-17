@@ -139,5 +139,10 @@ namespace EmailMarketing.Servicos.Home
             _context.EmailLogs.Add(log);
             await _context.SaveChangesAsync();
         }
+
+        public Task LogEmailAsync(string email, string status, string mensagemErro, string stackTrace)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

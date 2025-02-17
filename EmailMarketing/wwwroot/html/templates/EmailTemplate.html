@@ -5,24 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-mail Personalizado</title>
     <style>
-        body {
+        html, body {
+            height: 100%;
+            margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .email-container {
             max-width: 600px;
-            margin: 0 auto;
+            width: 100%;
             background-color: #ffffff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         .header {
-            text-align: center;
             padding: 10px 0;
             border-bottom: 1px solid #ddd;
         }
@@ -43,7 +46,6 @@
             }
 
         .image-container {
-            text-align: center;
             margin: 20px 0;
         }
 
@@ -55,8 +57,29 @@
                 margin: 0 auto;
             }
 
+        .cta-button {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+            .cta-button:hover {
+                background-color: #0056b3;
+                transform: translateY(-2px);
+            }
+
+            .cta-button:active {
+                transform: translateY(0);
+            }
+
         .footer {
-            text-align: center;
             padding: 10px 0;
             border-top: 1px solid #ddd;
             font-size: 12px;
@@ -75,7 +98,9 @@
             <p>Aproveite nossa promoção exclusiva:</p>
             <div class="image-container">
                 <img src="{ImagemPromocao}" alt="Promoção" style="width: 80%;">
+                <img src="https://localhost:7103/api/Rastreamento/abertura?email={EmailRatreamento}" alt="" style="display:none;" />
             </div>
+            <a href="https://localhost:7103/api/Rastreamento/clique?email={EmailRatreamento}" class="cta-button">Clique aqui</a>
         </div>
         <div class="footer">
             <p>&copy; 2025 Fenix Systems. Todos os direitos reservados.</p>

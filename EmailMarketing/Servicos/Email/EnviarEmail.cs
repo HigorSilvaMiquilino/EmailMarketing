@@ -23,7 +23,7 @@ namespace EmailMarketing.Servicos.Email
             var smtpPort = Convert.ToInt32(_config["EmailSettings:Port"]);
             var appPassword = _config["EmailSettings:Password"];
 
-            var corpoEmail = await CarregarTemplateAsync(nome, disparoModel.CorpoEmail, imagemUrl, promocao);
+            var corpoEmail = await CarregarTemplateAsync(email ,nome, disparoModel.CorpoEmail, imagemUrl, promocao);
 
             var message = new MailMessage
             {
@@ -49,26 +49,26 @@ namespace EmailMarketing.Servicos.Email
             {
                 await LogEmailAsync(email,
                     EmailStatusEnum.Erro.ToString(),
-                    "Falha ao se conectar ao SMTP server. Por favor verifique as configurações do SMTP.");
+                    "Falha ao se conectar ao SMTP server. Por favor verifique as configurações do SMTP.", ex.StackTrace);
                 throw new SmtpException("Falha ao se conectar ao SMTP server. Por favor verifique as configurações do SMTP.", ex);
             }
             catch (SmtpException ex)
             {
                 await LogEmailAsync(email,
                      EmailStatusEnum.Erro.ToString(),
-                     "Falha ao mandar o e-mail.");
+                     "Falha ao mandar o e-mail.", ex.StackTrace);
                 throw new SmtpException("Falha ao mandar o e-mail.", ex);
             }
             catch (Exception ex)
             {
                 await LogEmailAsync(email,
                         EmailStatusEnum.Erro.ToString(),
-                        "Um erro ocorreu enquanto eviava o e-mail.");
+                        "Um erro ocorreu enquanto eviava o e-mail.", ex.StackTrace);
                 throw new Exception("Um erro ocorreu enquanto eviava o e-mail.", ex);
             }
         }
 
-        public async Task<string> CarregarTemplateAsync(string nome, string mensagem, string imagemPromocao, Promocao promocao)
+        public async Task<string> CarregarTemplateAsync(string email, string nome, string mensagem, string imagemPromocao, Promocao promocao)
         {
             var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot","html", "templates", "EmailTemplate.html");
             var emailTemplate = await File.ReadAllTextAsync(templatePath);
@@ -77,28 +77,40 @@ namespace EmailMarketing.Servicos.Email
                 .Replace("{promocaoNome}", promocao.Nome)
                 .Replace("{Nome}", nome)
                 .Replace("{Mensagem}", mensagem)
-                .Replace("{ImagemPromocao}", imagemPromocao);
+                .Replace("{ImagemPromocao}", imagemPromocao)
+                .Replace("{EmailRatreamento}", email);
 
             return templatePersonalizado;
         }
 
-        public async Task LogEmailAsync(string email, string status, string mensagemErro)
+        public async Task LogEmailAsync(string email, string status, string mensagemErro, string stackTrace)
         {
-            var log = new EmailLog
+
+            var logErro = new LogErro
             {
-                Email = email,
-                Status = status,
-                DataEnvio = DateTime.Now,
-                MensagemErro = mensagemErro
+                DataErro = DateTime.Now,
+                MensagemErro = mensagemErro,
+                StackTrace = stackTrace,
+                Status = EmailStatusEnum.Erro.ToString(),
+                Email = email
             };
 
-            _context.EmailLogs.Add(log);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.LogsErro.Add(logErro);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine($"Erro ao salvar log de erro: {exception.Message}");
+            }
+
         }
 
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             throw new NotImplementedException();
         }
+
     }
 }
