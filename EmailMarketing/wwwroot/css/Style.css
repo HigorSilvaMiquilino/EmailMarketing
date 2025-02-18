@@ -18,16 +18,12 @@ margin: 0;
 padding: 0;
 }
 
-
-
 /* Estilos da Navbar */
 #features,
 #about,
 #contact {
-padding-top: 8rem; 
+padding-top: 8rem;
 }
-
-
 
 .navbar {
 background-color: black;
@@ -58,16 +54,16 @@ align-items: center;
 }
 
 .logo img {
-    width: 300px;
-    height: 100px;
-    margin-right: 10px;
+width: 300px;
+height: 100px;
+margin-right: 10px;
 }
 
 .navbar-menu {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
+list-style: none;
+display: flex;
+margin: 0;
+padding: 0;
 }
 
 .navbar-menu li {
@@ -75,32 +71,45 @@ margin-left: 1.5rem;
 }
 
 .navbar-menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
+color: white;
+text-decoration: none;
+font-size: 1rem;
+transition: color 0.3s ease;
 }
 
 .navbar-menu a.active {
-    font-weight: bold;
+font-weight: bold;
 }
 
 .btn-login {
-    background-color: #007bff;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+background-color: #82F74A; 
+padding: 0.5rem 1rem;
+border-radius: 5px;
+text-decoration: none; 
+}
+
+.btn-login:hover {
+background-color: #6CD936; 
+transform: translateY(-2px);
+box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); 
+}
+
+.btn-login:active {
+transform: translateY(0);
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 .navbar-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
+display: none;
+flex-direction: column;
+cursor: pointer;
 }
 
 .navbar-toggle span {
-    background-color: white;
-    height: 2px;
-    width: 25px;
-    margin: 4px 0;
+background-color: white;
+height: 2px;
+width: 25px;
+margin: 4px 0;
 }
 
 /* Responsividade */
@@ -121,88 +130,97 @@ margin-left: 1.5rem;
 }
 
 /* Estilos da Hero Section */
-
-/* Conteúdo principal */
-main {
-    flex: 1 0 auto; 
-    width: 100%;
-    padding: 2rem 0;
-}
-
 .hero {
-    background-color: #f8f9fa;
-    padding: 6rem 0 4rem;
-    padding-top: 12rem;
-    text-align: center;
+background-color: #f8f9fa;
+padding: 6rem 0 4rem;
+padding-top: 12rem;
+text-align: center;
 }
 
 .hero .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+width: 90%;
+max-width: 1200px;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 }
 
 .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+font-size: 2.5rem;
+margin-bottom: 1rem;
 }
 
 .hero p {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
+font-size: 1.25rem;
+margin-bottom: 2rem;
 }
 
+/* Estilos do botão */
 .btn-primary {
-    background-color: #007bff;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    display: inline-block;
+background-color: #82F74A; 
+color: #000; 
+padding: 0.75rem 1.5rem;
+border: none;
+border-radius: 10px;
+font-size: 1rem;
+font-weight: 600;
+text-decoration: none;
+cursor: pointer;
+transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+text-transform: uppercase;
+letter-spacing: 1px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.btn-primary:hover {
+background-color: #6CD936; 
+transform: translateY(-2px);
+box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); 
+}
+
+.btn-primary:active {
+transform: translateY(0);
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilos da Seção de Funcionalidades */
 .features {
-    padding: 4rem 0;
-    text-align: center;
+padding: 4rem 0;
+text-align: center;
 }
 
 .features .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+width: 90%;
+max-width: 1200px;
+margin: 0 auto;
 }
 
 .features h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    text-align: center;
+font-size: 2rem;
+margin-bottom: 2rem;
+text-align: center;
 }
 
 .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2rem;
 }
 
 .feature-item {
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
+background-color: white;
+padding: 1.5rem;
+border-radius: 10px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+text-align: center;
 }
 
 .feature-item h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+font-size: 1.5rem;
+margin-bottom: 1rem;
 }
-
 
 @media (max-width: 768px) {
     .feature-grid {
@@ -212,29 +230,29 @@ main {
 
 /* Estilos do Rodapé */
 .footer {
-    flex-shrink: 0; 
-    background-color: #343a40;
-    color: white;
-    text-align: center;
-    padding: 2rem 0;
-    border-top: 4px solid green;
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
+flex-shrink: 0;
+background-color: #343a40;
+color: white;
+text-align: center;
+padding: 2rem 0;
+border-top: 4px solid green;
+box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+width: 100%;
 }
 
 .footer-content {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+width: 90%;
+max-width: 1200px;
+margin: 0 auto;
 }
 
 .footer p {
-    margin: 0;
-    font-size: 1rem;
-    line-height: 1.5;
+margin: 0;
+font-size: 1rem;
+line-height: 1.5;
+transition: color 0.3s ease;
 }
 
 .footer p:hover {
-    color: forestgreen;
-    transition: color 0.3s ease;
+color: #82F74A; 
 }

@@ -23,6 +23,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
+            box-sizing: border-box;
         }
 
         .header {
@@ -30,54 +31,59 @@
             border-bottom: 1px solid #ddd;
         }
 
-            .header h1 {
-                margin: 0;
-                font-size: 24px;
-                color: #007bff;
-            }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: black;
+        }
 
         .content {
             padding: 20px 0;
         }
 
-            .content p {
-                font-size: 16px;
-                color: #333;
-            }
+        .content p {
+            font-size: 16px;
+            color: #333;
+        }
 
         .image-container {
             margin: 20px 0;
         }
 
-            .image-container img {
-                max-width: 100%;
-                border-radius: 10px;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-                display: block;
-                margin: 0 auto;
-            }
-
-        .cta-button {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 12px 24px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #fff;
-            background-color: #007bff;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+        .image-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: block;
+            margin: 0 auto;
         }
 
-            .cta-button:hover {
-                background-color: #0056b3;
-                transform: translateY(-2px);
-            }
+        .btn-primary {
+            background-color: #82F74A; 
+            color: #000; 
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+        }
 
-            .cta-button:active {
-                transform: translateY(0);
-            }
+        .btn-primary:hover {
+            background-color: #6CD936; 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); 
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+        }
 
         .footer {
             padding: 10px 0;
@@ -100,7 +106,7 @@
                 <img src="{ImagemPromocao}" alt="Promoção" style="width: 80%;">
                 <img src="https://localhost:7103/api/Rastreamento/abertura?email={EmailRatreamento}" alt="" style="display:none;" />
             </div>
-            <a href="https://localhost:7103/api/Rastreamento/clique?email={EmailRatreamento}" class="cta-button">Clique aqui</a>
+            <a href="https://localhost:7103/api/Rastreamento/clique?email={EmailRatreamento}" class="btn-primary">Clique aqui</a>
         </div>
         <div class="footer">
             <p>&copy; 2025 Fenix Systems. Todos os direitos reservados.</p>

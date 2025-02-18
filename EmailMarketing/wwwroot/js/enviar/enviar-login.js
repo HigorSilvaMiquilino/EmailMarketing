@@ -43,5 +43,5 @@
 function showError(elementId, message) {
     const errorElement = document.getElementById(elementId);
     errorElement.textContent = message;
-    errorElement.style.display = 'block';
+    errorElement.style.display = 'block'; 
 }
