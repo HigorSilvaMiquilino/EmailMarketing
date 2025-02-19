@@ -15,6 +15,7 @@ namespace EmailMarketing.Servicos.Home
         private readonly EnviarEmail _enviarEmails;
         private readonly AuthService _authService;
 
+
         public HomeService(UserManager<ApplicationUser> userManager,
                            SignInManager<ApplicationUser> signInManager,
                            ApplicationDbContext context,
@@ -140,7 +141,33 @@ namespace EmailMarketing.Servicos.Home
             await _context.SaveChangesAsync();
         }
 
+        public async Task<ApplicationUser> GetUsuarioEmailAsync(string email)
+        {
+            var user = await _context.Users.FirstAsync(u => u.Email == email);
+            if (user == null)
+            {
+                throw new Exception("Usuário não encontrado");
+            }
+            return user;
+        }
+
+        public async Task<bool> ResetSenhaAsync(ApplicationUser user, string senha)
+        {
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var result = await _userManager.ResetPasswordAsync(user, token, senha);
+            if (result.Succeeded)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public Task LogEmailAsync(string email, string status, string mensagemErro, string stackTrace)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task EnviarEmailRecuperacao(ApplicationUser user)
         {
             throw new NotImplementedException();
         }

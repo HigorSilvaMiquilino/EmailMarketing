@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
             try {
                 enviarLogin();
             } catch (error) {
-                console.error("Error sending login request:", error);
+                console.error("Erro ao enviar a requisição de login:", error);
             }
         }
     });

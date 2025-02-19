@@ -83,6 +83,62 @@ namespace EmailMarketing.Servicos.Email
             return templatePersonalizado;
         }
 
+        public async Task EnviarEmailRecuperacao(ApplicationUser user)
+        {
+            var fromAddress = _config["EmailSettings:DefaultEmailAddress"];
+            var smtpServer = _config["EmailSettings:Server"];
+            var smtpPort = Convert.ToInt32(_config["EmailSettings:Port"]);
+            var appPassword = _config["EmailSettings:Password"];
+
+            var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "html", "templates", "EmailRecuperacaoTemplate.html");
+            var emailTemplate = await File.ReadAllTextAsync(templatePath);
+
+            var templatePersonalizado = emailTemplate
+                .Replace("{Nome}", user.Nome);
+
+            var message = new MailMessage
+            {
+                From = new MailAddress(fromAddress),
+                Subject = "Recuperação de senha",
+                Body = templatePersonalizado,
+                IsBodyHtml = true
+            };
+
+            message.To.Add(new MailAddress(user.Email));
+
+            using var cliente = new SmtpClient(smtpServer, smtpPort)
+            {
+                Credentials = new System.Net.NetworkCredential(fromAddress, appPassword),
+                EnableSsl = true
+            };
+
+            try
+            {
+                await cliente.SendMailAsync(message);
+            }
+            catch (SocketException ex)
+            {
+                await LogEmailAsync(user.Email,
+                    EmailStatusEnum.Erro.ToString(),
+                    "Falha ao se conectar ao SMTP server. Por favor verifique as configurações do SMTP.", ex.StackTrace);
+                throw new SmtpException("Falha ao se conectar ao SMTP server. Por favor verifique as configurações do SMTP.", ex);
+            }
+            catch (SmtpException ex)
+            {
+                await LogEmailAsync(user.Email,
+                     EmailStatusEnum.Erro.ToString(),
+                     "Falha ao mandar o e-mail.", ex.StackTrace);
+                throw new SmtpException("Falha ao mandar o e-mail.", ex);
+            }
+            catch (Exception ex)
+            {
+                await LogEmailAsync(user.Email,
+                        EmailStatusEnum.Erro.ToString(),
+                        "Um erro ocorreu enquanto eviava o e-mail.", ex.StackTrace);
+                throw new Exception("Um erro ocorreu enquanto eviava o e-mail.", ex);
+            }
+        }
+
         public async Task LogEmailAsync(string email, string status, string mensagemErro, string stackTrace)
         {
 

@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using EmailMarketing.Servicos.Auth;
 using OfficeOpenXml;
+using EmailMarketing.Servicos.Recuperacao;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,9 @@ builder.Services.AddScoped<HomeService>();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<AuthService>();
+
+builder.Services.AddScoped<IRecuperacaoService, RecuperacaoService>();
+builder.Services.AddScoped<RecuperacaoService>();
 
 builder.Services.AddEndpointsApiExplorer();
 

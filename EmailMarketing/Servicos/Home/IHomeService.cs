@@ -1,4 +1,5 @@
-﻿using EmailMarketing.Models;
+﻿using EmailMarketing.Data;
+using EmailMarketing.Models;
 
 namespace EmailMarketing.Servicos.Home
 {
@@ -14,5 +15,9 @@ namespace EmailMarketing.Servicos.Home
 
         Task DeleteUserAsync(string userId);
         Task LogEmailAsync(string email, string status, string mensagemErro);
+
+        Task<ApplicationUser> GetUsuarioEmailAsync(string email);
+
+        Task<bool> ResetSenhaAsync(ApplicationUser user, string model);
     }
 }

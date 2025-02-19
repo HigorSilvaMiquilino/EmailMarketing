@@ -9,7 +9,10 @@
     <link href="/css/esqueci-senha.css" rel="stylesheet" />
 
     <script src="/js/carregar-componentes.js" type="module" defer></script>
-    <script src="/js/validacao/validacao-esqueci-minha-senha.js" type="module"  defer></script>
+    <script src="/js/validacao/validacao-esqueci-minha-senha.js" type="module" defer></script>
+    <script src="/js/enviar/enviar-esqueciminha-senha.js" type="module" defer></script>
+    <script src="/js/enviar/enviar-recuperacao-senha.js" type="module" defer ></script>
+
 </head>
 <body>
 
@@ -17,6 +20,7 @@
         <div class="form-container">
             <h1>Recuperar Senha</h1>
             <form class="recovery-form form-input">
+                <input type="hidden" name="__RequestVerificationToken">
                 <div class="form-group">
                     <label for="email">E-mail</label>
                     <input type="email" id="email" name="email" required placeholder="Digite seu e-mail cadastrado">
