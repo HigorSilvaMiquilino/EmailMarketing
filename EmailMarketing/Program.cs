@@ -10,6 +10,7 @@ using System.Text;
 using EmailMarketing.Servicos.Auth;
 using OfficeOpenXml;
 using EmailMarketing.Servicos.Recuperacao;
+using EmailMarketing.Servicos.Clientes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +41,9 @@ builder.Services.AddScoped<AuthService>();
 
 builder.Services.AddScoped<IRecuperacaoService, RecuperacaoService>();
 builder.Services.AddScoped<RecuperacaoService>();
+
+builder.Services.AddScoped<IClientesService, ClientesService>();
+builder.Services.AddScoped<ClientesService>();
 
 builder.Services.AddEndpointsApiExplorer();
 

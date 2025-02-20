@@ -10,7 +10,7 @@ scroll-behavior: smooth;
 height: 100%;
 }
 
-body {
+body {      
 min-height: 100vh;
 display: flex;
 flex-direction: column;
@@ -54,16 +54,17 @@ align-items: center;
 }
 
 .logo img {
-width: 300px;
+width: 200px;
 height: 100px;
 margin-right: 10px;
 }
 
 .navbar-menu {
-list-style: none;
-display: flex;
-margin: 0;
-padding: 0;
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: center;
 }
 
 .navbar-menu li {
@@ -79,6 +80,19 @@ transition: color 0.3s ease;
 
 .navbar-menu a.active {
 font-weight: bold;
+}
+
+.navbar-toggle {
+display: none;
+flex-direction: column;
+cursor: pointer;
+}
+
+.navbar-toggle span {
+    background-color: white;
+    height: 2px;
+    width: 25px;
+    margin: 4px 0;
 }
 
 .btn-login {
@@ -115,17 +129,31 @@ margin: 4px 0;
 /* Responsividade */
 @media (max-width: 768px) {
     .navbar-menu {
-    display: none;
-    flex-direction: column;
-    width: 100%;
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: black;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        transition: opacity 0.3s ease;
+        opacity: 0;
     }
 
-    .navbar-menu.active {
-        display: flex;
-    }
+        .navbar-menu.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .navbar-menu li {
+            margin: 0;
+            padding: 1rem 0;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
 
     .navbar-toggle {
-    display: flex;
+        display: flex;
     }
 }
 
@@ -223,9 +251,9 @@ margin-bottom: 1rem;
 }
 
 @media (max-width: 768px) {
-    .feature-grid {
-    grid-template-columns: 1fr;
-    }
+.feature-grid {
+grid-template-columns: 1fr;
+}
 }
 
 /* Estilos do Rodapé */

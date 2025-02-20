@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/carregar.css" />
 
     <script src="/js/carregar-componentes.js" type="module" defer></script>
-    <script src="/js/upload.js" defer></script>
+    <script src="/js/upload.js" type="module" defer></script>
 </head>
 <body>
     <main>
@@ -19,7 +19,7 @@
                 <form id="uploadForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="fileInput">Selecione um arquivo (CSV, xlsx ou SQL):</label>
-                        <input type="file" id="fileInput" name="file" accept=".csv, .sql, .xlsx" required />
+                        <input type="file" id="fileInput" name="file" accept=".csv, .xlsx, .sql"/>
                         <div class="error-message" id="fileErrorMessage"></div>
                     </div>
                     <button type="submit" class="btn-primary">Enviar Arquivo</button>
@@ -34,21 +34,25 @@
                 <form id="promocaoForm">
                     <div class="form-group">
                         <label for="nomePromocao">Nome da Promoção:</label>
-                        <input type="text" id="nomePromocao" name="nomePromocao" required />
+                        <input type="text" id="nomePromocao" name="nomePromocao"  class="campoEntrada"/>
+                        <div class="error-message" id="nomeErrorMessage"></div>
                     </div>
                     <div class="form-group">
                         <label for="descricaoPromocao">Descrição:</label>
-                        <textarea id="descricaoPromocao" name="descricaoPromocao" required></textarea>
+                        <textarea id="descricaoPromocao" name="descricaoPromocao" class="campoEntrada"></textarea>
+                        <div class="error-message" id="textareaErrorMessage"></div>
                     </div>
                     <div class="form-group">
                         <label for="dataInicio">Data de Início:</label>
-                        <input type="date" id="dataInicio" name="dataInicio" required />
+                        <input type="date" id="dataInicio" name="dataInicio" class="campoEntrada"/>
+                        <div class="error-message" id="dataInicioErrorMessage"></div>
                     </div>
                     <div class="form-group">
                         <label for="dataTermino">Data de Término:</label>
-                        <input type="date" id="dataTermino" name="dataTermino" required />
+                        <input type="date" id="dataTermino" name="dataTermino" class="campoEntrada" />
+                        <div class="error-message" id="dataTerminoErrorMessage"></div>
                     </div>
-                    <div class="error-message" id="promocaoErrorMessage"></div>
+                    <div class="error-message" id="dataInvalida"></div>
                     <button type="submit" class="btn-primary">Cadastrar Promoção</button>
                 </form>
                 <div id="promocaoStatus"></div>

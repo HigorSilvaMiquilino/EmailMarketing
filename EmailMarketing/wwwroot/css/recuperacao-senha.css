@@ -1,17 +1,43 @@
-﻿.form-container {
-max-width: 400px;
-margin: 150px auto 50px;
+﻿/* Estilos globais */
+html, body {
+height: 100%;
+margin: 0;
+font-family: Arial, sans-serif;
+display: flex;
+flex-direction: column;
+}
+
+body {
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+}
+
+/* Estilos do conteúdo principal */
+main {
+flex: 1;
+display: flex;
+justify-content: center;
+align-items: flex-start; 
+padding-top: 12rem; 
+}
+
+/* Estilos do formulário */
+.form-container {
+max-width: 500px;
+width: 100%;
 padding: 2rem;
 background-color: #fff;
 border-radius: 10px;
 box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+text-align: left; 
 }
 
 .form-container h1 {
-text-align: center;
 color: #333;
 margin-bottom: 2rem;
 font-size: 2rem;
+text-align: center; 
 }
 
 .recuperacao-form {
@@ -40,8 +66,8 @@ transition: border-color 0.3s ease;
 }
 
 .form-group input:focus {
-    outline: none;
-    border-color: #007bff;
+outline: none;
+border-color: #007bff;
 }
 
 .btn-primary {
@@ -83,5 +109,6 @@ font-size: 0.9rem;
 }
 
 .form-links a:hover {
-    text-decoration: underline;
+text-decoration: underline;
 }
+
