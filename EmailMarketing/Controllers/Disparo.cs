@@ -18,6 +18,7 @@ namespace EmailMarketing.Controllers
         private readonly ApplicationDbContext _context;
         private readonly EnviarEmail _enviarEmails;
         private string Email { get; set; }
+        private string imagemUrl;
 
         public DisparoController(ApplicationDbContext context, EnviarEmail enviarEmail)
         {
@@ -49,7 +50,12 @@ namespace EmailMarketing.Controllers
 
                 var promocao = await _context.Promocoes.FindAsync(disparoModel.PromocaoId);
 
-                string imagemUrl = null;
+                if (promocao == null)
+                {
+                    return BadRequest(new { success = false, message = "Promoção não encontrada." });
+                }
+
+
                 if (disparoModel.ImagemPromocao != null)
                 {
                     var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
@@ -66,7 +72,8 @@ namespace EmailMarketing.Controllers
                         await disparoModel.ImagemPromocao.CopyToAsync(stream);
                     }
 
-                    imagemUrl = $"/uploads/{uniqueFileName}";
+                    var baseUrl = $"{this.Request.Scheme}://{this.Request.Host}";
+                    imagemUrl = $"{baseUrl}/uploads/{uniqueFileName}";
                     Console.WriteLine($"Imagem em: {imagemUrl}");
                 }
 

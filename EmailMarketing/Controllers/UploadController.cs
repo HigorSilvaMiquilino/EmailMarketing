@@ -244,8 +244,6 @@ namespace EmailMarketing.Controllers
 
                 foreach (var command in sqlCommands)
                 {
-                    // Exemplo de extração de valores de um comando SQL INSERT
-                    // Ajuste conforme necessário para o formato do seu SQL
                     var match = Regex.Match(command, @"INSERT INTO Clientes \(Nome, Email, PromocaoId\) VALUES \('(?<Nome>[^']*)', '(?<Email>[^']*)', (?<PromocaoId>\d+)\)");
                     if (match.Success)
                     {

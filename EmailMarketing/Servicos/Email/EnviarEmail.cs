@@ -73,11 +73,14 @@ namespace EmailMarketing.Servicos.Email
             var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot","html", "templates", "EmailTemplate.html");
             var emailTemplate = await File.ReadAllTextAsync(templatePath);
 
+
+            var imagemSrc = string.IsNullOrEmpty(imagemPromocao) ? "https://localhost:7103/uploads/sem-imagem.jpg" : imagemPromocao;
+
             var templatePersonalizado = emailTemplate
                 .Replace("{promocaoNome}", promocao.Nome)
                 .Replace("{Nome}", nome)
                 .Replace("{Mensagem}", mensagem)
-                .Replace("{ImagemPromocao}", imagemPromocao)
+                .Replace("{ImagemPromocao}", imagemSrc)
                 .Replace("{EmailRatreamento}", email);
 
             return templatePersonalizado;
